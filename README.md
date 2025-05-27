@@ -1,36 +1,114 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎬 Movie Fun Fact App
 
-## Getting Started
+Welcome to the Movie Fun Fact App — a full-stack web application that lets users sign in with Google, save their favorite movie, and get fun, AI-generated trivia about it. Built with a focus on clean code, security, and great user experience, this project showcases how modern technologies like Next.js, Prisma, and OpenAI can work together seamlessly.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ What It Does
+
+- **Simple sign-in with Google** — no need to remember another password.
+- **First-time user flow** — users are asked their favorite movie only once.
+- **OpenAI-powered fun facts** — every time a user refreshes (up to 2 times), they get a new, quirky fact about their favorite movie.
+- **Clean and responsive design** — built with Tailwind CSS and looks good on desktop or mobile.
+- **Polished session handling** — built with NextAuth to securely manage users and sessions.
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React, Next.js, TypeScript, Tailwind CSS
+- **Authentication**: NextAuth with Google OAuth
+- **Backend**: API Routes in Next.js
+- **Database**: PostgreSQL (via Prisma)
+- **AI Integration**: OpenAI GPT-3.5 (Chat API)
+- **Deployment-Ready**: Vercel, Railway, or Docker-compatible
+
+---
+
+## 📦 Project Highlights
+
+- Strong use of TypeScript for end-to-end type safety
+- Follows Next.js best practices (file-based routing, API layer)
+- Prisma ORM setup with a clean and extendable schema
+- Uses `getServerSession()` to ensure protected API access
+- Guards in place for invalid movie names and session refresh limits
+- Mobile-friendly, responsive UI with smooth transitions
+
+---
+
+## 📁 Folder Structure Overview
+
+```
+components/        → Reusable UI elements (e.g., Navbar)
+pages/             → All route-based pages (login, home)
+pages/api/         → API routes for auth, OpenAI, DB updates
+lib/               → Prisma client initialization
+prisma/            → Database schema
+public/            → Static files like images/logos
+styles/            → Tailwind/global CSS
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Clone the repository**
+```bash
+git clone https://github.com/your-username/movie-fun-facts.git
+cd movie-fun-facts
+```
 
-## Learn More
+2. **Install dependencies**
+```bash
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+3. **Set up environment variables**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Create a `.env.local` file with:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+OPENAI_API_KEY=your_openai_key
+NEXTAUTH_SECRET=some_random_string
+NEXTAUTH_URL=http://localhost:3000
+```
 
-## Deploy on Vercel
+4. **Push Prisma schema to DB**
+```bash
+npx prisma db push
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. **Start the development server**
+```bash
+npm run dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🧪 Future Enhancements
+
+- Add OpenAI usage logging or rate-limiting per user
+- Introduce session storage or caching to persist fact history
+- Create admin-only view to browse all stored users & facts
+- Add error logging to better handle API or DB failures
+- Add animations or a loading skeleton during fact fetch
+
+---
+
+## 📸 Screenshots
+
+> Coming soon — live demo GIFs and images
+
+---
+
+## 📝 License
+
+This project is licensed under the MIT License. Feel free to fork and modify it for learning or personal use.
+
+---
+
+## 👋 Final Thoughts
+
+This project was built with care and attention to detail in under 3 hours. It's meant to demonstrate real-world integration of authentication, APIs, and a clean front-end. If you’re a recruiter or reviewer, thank you for checking this out!
