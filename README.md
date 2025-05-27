@@ -99,13 +99,10 @@ npm run dev
 
 ## 📸 Screenshots
 
-> Coming soon — live demo GIFs and images
+![Login Page](./public/Login.png)
+![Home Page](./public/enter_movie.png)
+![Fact](./public/movie_fact.png)
 
----
-
-## 📝 License
-
-This project is licensed under the MIT License. Feel free to fork and modify it for learning or personal use.
 
 ---
 

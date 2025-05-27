@@ -5,7 +5,7 @@ export default function Navbar() {
   const { status } = useSession();
 
   return (
-    <nav className="bg-orange-50 px-6 py-3 flex items-center justify-between shadow-sm">
+    <nav className="w-full px-6 py-3 backdrop-blur-sm bg-white/70 border-b border-white/30 fixed top-0 left-0 z-50 flex justify-between items-center">
       <Link href="/">
         <img src="/scowtt-logo.png" alt="Logo" className="h-10 w-auto" />
       </Link>
