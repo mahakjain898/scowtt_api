@@ -4,7 +4,7 @@ Welcome to the Movie Fun Fact App — a full-stack web application that lets use
 
 ---
 
-## ✨ What It Does
+## What It Does
 
 - **Simple sign-in with Google** — no need to remember another password.
 - **First-time user flow** — users are asked their favorite movie only once.
@@ -25,7 +25,7 @@ Welcome to the Movie Fun Fact App — a full-stack web application that lets use
 
 ---
 
-## 📦 Project Highlights
+## Project Highlights
 
 - Strong use of TypeScript for end-to-end type safety
 - Follows Next.js best practices (file-based routing, API layer)
@@ -50,7 +50,7 @@ styles/            → Tailwind/global CSS
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 1. **Clone the repository**
 ```bash
@@ -87,7 +87,7 @@ npm run dev
 
 ---
 
-## 🧪 Future Enhancements
+## Future Enhancements
 
 - Add OpenAI usage logging or rate-limiting per user
 - Introduce session storage or caching to persist fact history
@@ -97,7 +97,7 @@ npm run dev
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
 ![Login Page](./public/Login.png)
 ![Home Page](./public/enter_movie.png)
