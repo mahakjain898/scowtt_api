@@ -1,6 +1,7 @@
 import { useSession, signOut } from "next-auth/react";
 import { useEffect, useState } from "react";
 import Head from "next/head";
+import { log } from "console";
 
 export default function Home() {
   const { data: session, status } = useSession();
@@ -74,7 +75,7 @@ export default function Home() {
   if (status !== "authenticated") {
     return <p className="text-center mt-10">Please sign in first.</p>;
   }
-
+  const isDefaultGoogleImage = session.user?.image?.includes("default-user");
   return (
     <>
       <Head>
@@ -84,13 +85,14 @@ export default function Home() {
         <div className="bg-white p-6 rounded-xl shadow-xl max-w-md w-full space-y-6">
           <div className="text-center space-y-2">
             <div className="w-16 h-16 mx-auto rounded-full bg-orange-100 flex items-center justify-center text-orange-600 font-bold text-xl">
-              {session.user?.image && (
-                <img
-                  src={session.user.image}
-                  alt="User"
-                  className="w-full h-full object-cover rounded-full"
-                />
-              )}
+            {!isDefaultGoogleImage && session.user?.image && (
+              <img
+                src={session.user.image}
+                alt="User"
+                className="w-full h-full object-cover rounded-full"
+              />
+            )}
+
             </div>
             <h2 className="text-xl font-bold">{session.user?.name}</h2>
             <p className="text-sm text-gray-500">{session.user?.email}</p>
