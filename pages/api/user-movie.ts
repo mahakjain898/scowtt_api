@@ -5,39 +5,38 @@ import prisma from "../../lib/prisma";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getServerSession(req, res, authOptions);
-  if (!session?.user?.email) {
-    return res.status(401).json({ error: "Unauthorized" });
-  }
+  if (!session?.user?.email) return res.status(401).json({ error: "Unauthorized" });
 
   const email = session.user.email;
 
   if (req.method === "GET") {
     const user = await prisma.user.findUnique({ where: { email } });
-    return res.status(200).json({ movie: user?.favoriteMovie || null });
+    const movies = user?.favoriteMovies
+      ? user.favoriteMovies.split(",").map((m: string) => m.trim())
+      : [];
+    return res.json({ movies });
   }
 
   if (req.method === "POST") {
     const { movie } = req.body;
+    if (!movie) return res.status(400).json({ error: "Movie name required" });
 
-    if (!movie || typeof movie !== "string") {
-      return res.status(400).json({ error: "Movie name is required" });
+    const user = await prisma.user.findUnique({ where: { email } });
+    const existing = user?.favoriteMovies?.split(",").map((m: string) => m.trim()) || [];
+
+    if (existing.includes(movie)) {
+      return res.status(400).json({ error: "Movie already added" });
     }
 
-    const omdbKey = process.env.OMDB_API_KEY!;
-    const response = await fetch(`https://www.omdbapi.com/?t=${encodeURIComponent(movie)}&apikey=${omdbKey}`);
-    const data = await response.json();
+    const updated = [...existing, movie].join(", ");
 
-    if (data.Response === "False") {
-      return res.status(400).json({ error: "Invalid movie name" });
-    }
-
-    const updatedUser = await prisma.user.update({
+    await prisma.user.update({
       where: { email },
-      data: { favoriteMovie: movie },
+      data: { favoriteMovies: updated },
     });
 
-    return res.status(200).json({ success: true, movie: updatedUser.favoriteMovie });
+    return res.status(200).json({ movie });
   }
 
-  res.status(405).end(); 
+  return res.status(405).end();
 }
